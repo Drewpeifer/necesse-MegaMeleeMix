@@ -116,8 +116,8 @@ task runClient(type: JavaExec) {
 
     classpath = files(gameDirectory + "/Necesse.jar")
 
-    // Use Java 17 for running the game
-    def java17Home = System.getenv("JAVA_HOME") ?: "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
+    // Force use of Java 17 for running the game
+    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
     executable = "${java17Home}/bin/java"
 
     main = "StartSteamClient"
@@ -132,8 +132,8 @@ task runDevClient(type: JavaExec) {
 
     classpath = files(gameDirectory + "/Necesse.jar")
 
-    // Use Java 17 for running the game
-    def java17Home = System.getenv("JAVA_HOME") ?: "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
+    // Force use of Java 17 for running the game
+    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
     executable = "${java17Home}/bin/java"
 
     main = "StartSteamClient"
@@ -148,8 +148,8 @@ task runServer(type: JavaExec) {
 
     classpath = files(gameDirectory + "/Server.jar")
 
-    // Use Java 17 for running the game
-    def java17Home = System.getenv("JAVA_HOME") ?: "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
+    // Force use of Java 17 for running the game
+    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
     executable = "${java17Home}/bin/java"
 
     main = "StartDesktopServer"
