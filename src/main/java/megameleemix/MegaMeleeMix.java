@@ -1,5 +1,6 @@
 package megameleemix;
 
+import megameleemix.items.CauterizerGreatsword;
 import megameleemix.items.ExsanguinatorSword;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.ItemRegistry;
@@ -23,6 +24,7 @@ public class MegaMeleeMix {
         // // Register our items
         // ItemRegistry.registerItem("exampleitem", new ExampleMaterialItem(), 10, true);
         ItemRegistry.registerItem("exsanguinatorsword", new ExsanguinatorSword(), 20, true);
+        ItemRegistry.registerItem("cauterizergreatsword", new CauterizerGreatsword(), 20, true);
         // ItemRegistry.registerItem("examplestaff", new ExampleProjectileWeapon(), 30, true);
 
         // // Register our mob
@@ -60,6 +62,15 @@ public class MegaMeleeMix {
         // Example sword recipe, crafted in iron anvil using 4 example items and 5 copper bars
         Recipes.registerModRecipe(new Recipe(
                 "exsanguinatorsword",
+                1,
+                RecipeTechRegistry.IRON_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ironbar", 4),
+                        new Ingredient("copperbar", 5)
+                }
+        ));
+        Recipes.registerModRecipe(new Recipe(
+                "cauterizergreatsword",
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{

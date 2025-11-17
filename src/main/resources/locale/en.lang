@@ -1,5 +1,7 @@
 [item]
-exsanquinatorsword=The Exsanguinator
+exsanguinatorsword=The Exsanguinator
+cauterizergreatsword=The Cauterizer
 
 [itemtooltip]
-exsanguinatorswordtip=Generates health and resilience by feeding on the blood of enemies
+exsanguinatorswordtip=Generates 1% max health on hit by consuming the blood of enemies
+cauterizergreatswordtip=Burns enemies with the fire of vengeance
