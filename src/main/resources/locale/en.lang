@@ -1,5 +1,5 @@
 [item]
-examplesword=Example Sword
+exsanquinatorsword=The Exsanguinator
 
 [itemtooltip]
-exampleswordtip=A custom melee weapon
+exsanguinatorswordtip=Generates health and resilience by feeding on the blood of enemies
