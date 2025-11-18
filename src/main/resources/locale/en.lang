@@ -2,8 +2,10 @@
 exsanguinatorsword=The Exsanguinator
 cauterizergreatsword=The Cauterizer
 tranquilizerhammer=The Tranquilizer
+boomywhackerspear=The Boomy Whacker
 
 [itemtooltip]
 exsanguinatorswordtip=50% change to generate 30% of total armor rating as health on hit
 cauterizergreatswordtip=Deals 50% of max health as fire damage per second, for 10 seconds
 tranquilizerhammertip=Paralyzes target for 3 seconds and delivers huge knockback
+boomywhackerspeartip=Creates a 200 dmg explosion on EVERY swing with varying range (Don't use indoors!)

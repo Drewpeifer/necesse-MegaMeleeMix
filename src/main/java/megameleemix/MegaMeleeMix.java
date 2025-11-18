@@ -1,12 +1,15 @@
 package megameleemix;
 
 import megameleemix.buffs.Stun;
+import megameleemix.events.BoomyExplosion;
+import megameleemix.items.BoomyWhackerSpear;
 import megameleemix.items.CauterizerGreatsword;
 import megameleemix.items.ExsanguinatorSword;
 import megameleemix.items.TranquilizerHammer;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.BuffRegistry;
 import necesse.engine.registries.ItemRegistry;
+import necesse.engine.registries.LevelEventRegistry;
 import necesse.engine.registries.RecipeTechRegistry;
 import necesse.inventory.recipe.Ingredient;
 import necesse.inventory.recipe.Recipe;
@@ -29,6 +32,7 @@ public class MegaMeleeMix {
         ItemRegistry.registerItem("exsanguinatorsword", new ExsanguinatorSword(), 20, true);
         ItemRegistry.registerItem("cauterizergreatsword", new CauterizerGreatsword(), 20, true);
         ItemRegistry.registerItem("tranquilizerhammer", new TranquilizerHammer(), 20, true);
+        ItemRegistry.registerItem("boomywhackerspear", new BoomyWhackerSpear(), 20, true);
         // ItemRegistry.registerItem("examplestaff", new ExampleProjectileWeapon(), 30, true);
 
         // // Register our mob
@@ -39,6 +43,9 @@ public class MegaMeleeMix {
 
         // // Register our buff
         BuffRegistry.registerBuff("stun", new Stun());
+
+        // register event
+        LevelEventRegistry.registerEvent("boomy_explosion_event", BoomyExplosion.class);
 
         // PacketRegistry.registerPacket(ExamplePacket.class);
     }
@@ -82,6 +89,14 @@ public class MegaMeleeMix {
         ));
         Recipes.registerModRecipe(new Recipe(
                 "tranquilizerhammer",
+                1,
+                RecipeTechRegistry.IRON_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("anylog", 1),
+                }
+        ));
+        Recipes.registerModRecipe(new Recipe(
+                "boomywhackerspear",
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
