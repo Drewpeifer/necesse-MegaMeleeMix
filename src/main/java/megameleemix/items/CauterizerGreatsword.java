@@ -6,6 +6,7 @@ import necesse.entity.levelEvent.mobAbilityLevelEvent.ToolItemMobAbilityEvent;
 import necesse.entity.mobs.Mob;
 import necesse.entity.mobs.PlayerMob;
 import necesse.entity.mobs.buffs.ActiveBuff;
+import necesse.entity.mobs.buffs.BuffModifiers;
 import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item;
@@ -49,8 +50,9 @@ public class CauterizerGreatsword extends SwordToolItem {
         if (target != null) {
             // damage target mob
             super.hitMob(item, event, level, target, attacker);
-            // apply burn effect to target mob for 10 sec
-            target.buffManager.addBuff(new ActiveBuff("ablaze", target, 10000, null), true, true);
+            // burn target for 50% of total health, for 10 sec
+            float attackerHealth = attacker.getHealth();
+            target.buffManager.addBuff(new ActiveBuff("ablaze", target, 10000, null), true, true).setModifier(BuffModifiers.FIRE_DAMAGE_FLAT, attackerHealth * 0.5F);
         }
    }
 

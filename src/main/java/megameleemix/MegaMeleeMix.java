@@ -65,8 +65,7 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("ironbar", 4),
-                        new Ingredient("copperbar", 5)
+                        new Ingredient("anylog", 1),
                 }
         ));
         Recipes.registerModRecipe(new Recipe(
@@ -74,8 +73,7 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("ironbar", 4),
-                        new Ingredient("copperbar", 5)
+                        new Ingredient("anylog", 1),
                 }
         ));
         // Example staff recipe, crafted in workstation using 4 example items and 10 gold bars

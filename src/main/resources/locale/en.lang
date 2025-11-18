@@ -3,5 +3,5 @@ exsanguinatorsword=The Exsanguinator
 cauterizergreatsword=The Cauterizer
 
 [itemtooltip]
-exsanguinatorswordtip=Generates 1% max health on hit by consuming the blood of enemies
-cauterizergreatswordtip=Burns enemies with the fire of vengeance
+exsanguinatorswordtip=50% change to generate 1% of max health on hit
+cauterizergreatswordtip=Deals 50% of max health as fire damage per second, for 10 seconds

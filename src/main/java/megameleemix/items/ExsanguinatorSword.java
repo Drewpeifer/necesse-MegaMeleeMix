@@ -23,8 +23,8 @@ public class ExsanguinatorSword extends SwordToolItem {
     public ExsanguinatorSword() {
         super(400, null);
         rarity = Item.Rarity.EPIC;
-        attackAnimTime.setBaseValue(350); // 350 ms attack time
-        attackDamage.setBaseValue(175) // Base sword damage
+        attackAnimTime.setBaseValue(400);
+        attackDamage.setBaseValue(175)
                 .setUpgradedValue(1,200)
                 .setUpgradedValue(2,225)
                 .setUpgradedValue(3,250)
@@ -34,10 +34,10 @@ public class ExsanguinatorSword extends SwordToolItem {
                 .setUpgradedValue(7,450)
                 .setUpgradedValue(8,500)
                 .setUpgradedValue(9,550)
-                .setUpgradedValue(10,650); // Upgraded damage
-        resilienceGain.setBaseValue(8.0F); // 8 resilience per hit
-        attackRange.setBaseValue(60); // 70 range
-        knockback.setBaseValue(200); // 200 knockback
+                .setUpgradedValue(10,650);
+        resilienceGain.setBaseValue(8.0F);
+        attackRange.setBaseValue(60);
+        knockback.setBaseValue(200);
         
     }
 
@@ -53,7 +53,7 @@ public class ExsanguinatorSword extends SwordToolItem {
             super.hitMob(item, event, level, target, attacker);
             // 50% chance to heal attacker for 1% of max health on hit
             if (GameRandom.globalRandom.getChance(0.5F)) {
-                int AttackerHealthChange = attacker.getMaxHealth() / 100;
+                int AttackerHealthChange = attacker.getHealth() / 100;
                 attacker.getLevel().entityManager.events.add((LevelEvent) new MobHealthChangeEvent(attacker, AttackerHealthChange));
             }
         }
