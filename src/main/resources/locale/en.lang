@@ -1,7 +1,9 @@
 [item]
 exsanguinatorsword=The Exsanguinator
 cauterizergreatsword=The Cauterizer
+tranquilizerhammer=The Tranquilizer
 
 [itemtooltip]
-exsanguinatorswordtip=50% change to generate 1% of max health on hit
+exsanguinatorswordtip=50% change to generate 30% of total armor rating as health on hit
 cauterizergreatswordtip=Deals 50% of max health as fire damage per second, for 10 seconds
+tranquilizerhammertip=Paralyzes target for 3 seconds and delivers huge knockback

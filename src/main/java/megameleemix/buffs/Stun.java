@@ -1,0 +1,33 @@
+package megameleemix.buffs;
+
+import necesse.entity.mobs.buffs.ActiveBuff;
+import necesse.entity.mobs.buffs.BuffEventSubscriber;
+import necesse.entity.mobs.buffs.BuffModifiers;
+import necesse.entity.mobs.buffs.staticBuffs.Buff;
+
+public class Stun extends Buff {
+
+    public Stun() {
+        canCancel = true;
+        isVisible = true;
+        shouldSave = true;
+    }
+
+
+    @Override
+    public void init(ActiveBuff activeBuff, BuffEventSubscriber buffEventSubscriber) {
+        // Apply modifiers here
+        activeBuff.setModifier(BuffModifiers.PARALYZED, true);
+    }
+
+    @Override
+    public void serverTick(ActiveBuff buff) {
+        // You can do server ticks here
+    }
+
+    @Override
+    public void clientTick(ActiveBuff buff) {
+        // You can do client ticks here, like adding particles to buff.owner
+    }
+
+}

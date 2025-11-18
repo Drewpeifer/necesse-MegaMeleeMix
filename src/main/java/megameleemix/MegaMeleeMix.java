@@ -1,8 +1,11 @@
 package megameleemix;
 
+import megameleemix.buffs.Stun;
 import megameleemix.items.CauterizerGreatsword;
 import megameleemix.items.ExsanguinatorSword;
+import megameleemix.items.TranquilizerHammer;
 import necesse.engine.modLoader.annotations.ModEntry;
+import necesse.engine.registries.BuffRegistry;
 import necesse.engine.registries.ItemRegistry;
 import necesse.engine.registries.RecipeTechRegistry;
 import necesse.inventory.recipe.Ingredient;
@@ -25,6 +28,7 @@ public class MegaMeleeMix {
         // ItemRegistry.registerItem("exampleitem", new ExampleMaterialItem(), 10, true);
         ItemRegistry.registerItem("exsanguinatorsword", new ExsanguinatorSword(), 20, true);
         ItemRegistry.registerItem("cauterizergreatsword", new CauterizerGreatsword(), 20, true);
+        ItemRegistry.registerItem("tranquilizerhammer", new TranquilizerHammer(), 20, true);
         // ItemRegistry.registerItem("examplestaff", new ExampleProjectileWeapon(), 30, true);
 
         // // Register our mob
@@ -34,7 +38,7 @@ public class MegaMeleeMix {
         // ProjectileRegistry.registerProjectile("exampleprojectile", ExampleProjectile.class, "exampleprojectile", "exampleprojectile_shadow");
 
         // // Register our buff
-        // BuffRegistry.registerBuff("examplebuff", new ExampleBuff());
+        BuffRegistry.registerBuff("stun", new Stun());
 
         // PacketRegistry.registerPacket(ExamplePacket.class);
     }
@@ -70,6 +74,14 @@ public class MegaMeleeMix {
         ));
         Recipes.registerModRecipe(new Recipe(
                 "cauterizergreatsword",
+                1,
+                RecipeTechRegistry.IRON_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("anylog", 1),
+                }
+        ));
+        Recipes.registerModRecipe(new Recipe(
+                "tranquilizerhammer",
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{

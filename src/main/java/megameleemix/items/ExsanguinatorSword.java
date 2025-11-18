@@ -51,9 +51,9 @@ public class ExsanguinatorSword extends SwordToolItem {
         if (target != null) {
             // damage target mob
             super.hitMob(item, event, level, target, attacker);
-            // 50% chance to heal attacker for 1% of max health on hit
+            // 50% chance to heal attacker for 30% of max armor on hit
             if (GameRandom.globalRandom.getChance(0.5F)) {
-                int AttackerHealthChange = attacker.getHealth() / 100;
+                int AttackerHealthChange = (int)(attacker.getArmor() * 0.3F);
                 attacker.getLevel().entityManager.events.add((LevelEvent) new MobHealthChangeEvent(attacker, AttackerHealthChange));
             }
         }
