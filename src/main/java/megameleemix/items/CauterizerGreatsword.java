@@ -22,21 +22,24 @@ public class CauterizerGreatsword extends SwordToolItem {
     public CauterizerGreatsword() {
         super(400, null);
         rarity = Item.Rarity.EPIC;
-        attackAnimTime.setBaseValue(300); // 300 ms attack time
-        attackDamage.setBaseValue(215) // Base sword damage
-                .setUpgradedValue(1,240)
-                .setUpgradedValue(2,275)
-                .setUpgradedValue(3,325)
-                .setUpgradedValue(4,375)
-                .setUpgradedValue(5,425)
-                .setUpgradedValue(6,475)
-                .setUpgradedValue(7,525)
-                .setUpgradedValue(8,575)
-                .setUpgradedValue(9,625)
-                .setUpgradedValue(10,675); // Upgraded damage
-        resilienceGain.setBaseValue(12.0F); // 12 resilience per hit
-        attackRange.setBaseValue(90); // 90 range
-        knockback.setBaseValue(400); // 400 knockback
+        attackAnimTime.setBaseValue(300);
+        attackDamage.setBaseValue(200)
+                .setUpgradedValue(1,225)
+                .setUpgradedValue(2,250)
+                .setUpgradedValue(3,275)
+                .setUpgradedValue(4,300)
+                .setUpgradedValue(5,325)
+                .setUpgradedValue(6,350)
+                .setUpgradedValue(7,375)
+                .setUpgradedValue(8,400)
+                .setUpgradedValue(9,425)
+                .setUpgradedValue(10,475);
+        resilienceGain.setBaseValue(10.0F)
+                .setUpgradedValue(1, 11.0F)
+                .setUpgradedValue(5, 12.0F)
+                .setUpgradedValue(10, 14.0F);
+        attackRange.setBaseValue(90);
+        knockback.setBaseValue(400);
         
     }
 

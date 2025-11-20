@@ -1,11 +1,13 @@
 package megameleemix;
 
 import megameleemix.buffs.Stun;
+import megameleemix.buffs.WarlordsPauldronBuff;
 import megameleemix.events.BoomyExplosion;
 import megameleemix.items.BoomyWhackerSpear;
 import megameleemix.items.CauterizerGreatsword;
 import megameleemix.items.ExsanguinatorSword;
 import megameleemix.items.TranquilizerHammer;
+import megameleemix.items.WarlordsPauldron;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.BuffRegistry;
 import necesse.engine.registries.ItemRegistry;
@@ -19,35 +21,21 @@ import necesse.inventory.recipe.Recipes;
 public class MegaMeleeMix {
 
     public void init() {
-        // System.out.println("Hello world from my example mod!");
-
-        // Register our tiles
-        // TileRegistry.registerTile("exampletile", new ExampleTile(), 1, true);
-
-        // // Register out objects
-        // ObjectRegistry.registerObject("exampleobject", new ExampleObject(), 2, true);
 
         // // Register our items
-        // ItemRegistry.registerItem("exampleitem", new ExampleMaterialItem(), 10, true);
         ItemRegistry.registerItem("exsanguinatorsword", new ExsanguinatorSword(), 20, true);
         ItemRegistry.registerItem("cauterizergreatsword", new CauterizerGreatsword(), 20, true);
         ItemRegistry.registerItem("tranquilizerhammer", new TranquilizerHammer(), 20, true);
         ItemRegistry.registerItem("boomywhackerspear", new BoomyWhackerSpear(), 20, true);
-        // ItemRegistry.registerItem("examplestaff", new ExampleProjectileWeapon(), 30, true);
-
-        // // Register our mob
-        // MobRegistry.registerMob("examplemob", ExampleMob.class, true);
-
-        // // Register our projectile
-        // ProjectileRegistry.registerProjectile("exampleprojectile", ExampleProjectile.class, "exampleprojectile", "exampleprojectile_shadow");
+        ItemRegistry.registerItem("warlordspauldron", new WarlordsPauldron(), 400F, true);
 
         // // Register our buff
         BuffRegistry.registerBuff("stun", new Stun());
+        BuffRegistry.registerBuff("warlords_pauldron_buff", new WarlordsPauldronBuff());
 
         // register event
         LevelEventRegistry.registerEvent("boomy_explosion_event", BoomyExplosion.class);
 
-        // PacketRegistry.registerPacket(ExamplePacket.class);
     }
 
     public void initResources() {
@@ -70,13 +58,13 @@ public class MegaMeleeMix {
         //                 new Ingredient("ironbar", 2)
         //         }
         // ).showAfter("woodboat")); // Show recipe after wood boat recipe
-        // Example sword recipe, crafted in iron anvil using 4 example items and 5 copper bars
         Recipes.registerModRecipe(new Recipe(
                 "exsanguinatorsword",
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("anylog", 1),
+                        // new Ingredient("anylog", 1),
+                        new Ingredient("tungstenbar", 15),
                 }
         ));
         Recipes.registerModRecipe(new Recipe(
@@ -84,7 +72,8 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("anylog", 1),
+                        // new Ingredient("anylog", 1),
+                        new Ingredient("tungstenbar", 35),
                 }
         ));
         Recipes.registerModRecipe(new Recipe(
@@ -92,7 +81,8 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("anylog", 1),
+                        // new Ingredient("anylog", 1),
+                        new Ingredient("myceliumbar", 25),
                 }
         ));
         Recipes.registerModRecipe(new Recipe(
@@ -100,27 +90,24 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        new Ingredient("anylog", 1),
+                        // new Ingredient("anylog", 1),
+                        new Ingredient("anylog", 20),
+                        new Ingredient("copperbar", 20),
+                        new Ingredient("ironbar", 20),
+                        new Ingredient("goldbar", 20),
+                        new Ingredient("tungstenbar", 20),
+                        new Ingredient("dynamitestick", 1),
                 }
         ));
-        // Example staff recipe, crafted in workstation using 4 example items and 10 gold bars
-        // Recipes.registerModRecipe(new Recipe(
-        //         "examplestaff",
-        //         1,
-        //         RecipeTechRegistry.WORKSTATION,
-        //         new Ingredient[]{
-        //                 new Ingredient("exampleitem", 4),
-        //                 new Ingredient("goldbar", 10)
-        //         }
-        // ).showAfter("exampleitem")); // Show the recipe after example item recipe
+        Recipes.registerModRecipe(new Recipe(
+                "warlordspauldron",
+                1,
+                RecipeTechRegistry.IRON_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("challengerspauldron", 5),
+                }
+        ));
 
-        // // Add out example mob to default cave mobs.
-        // // Spawn tables use a ticket/weight system. In general, common mobs have about 100 tickets.
-        // Biome.defaultCaveMobs
-        //         .add(100, "examplemob");
-
-        // // Register our server chat command
-        // CommandsManager.registerServerCommand(new ExampleChatCommand());
     }
 
 }

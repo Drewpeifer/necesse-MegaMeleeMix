@@ -23,21 +23,24 @@ public class ExsanguinatorSword extends SwordToolItem {
     public ExsanguinatorSword() {
         super(400, null);
         rarity = Item.Rarity.EPIC;
-        attackAnimTime.setBaseValue(400);
-        attackDamage.setBaseValue(175)
-                .setUpgradedValue(1,200)
-                .setUpgradedValue(2,225)
-                .setUpgradedValue(3,250)
-                .setUpgradedValue(4,300)
-                .setUpgradedValue(5,350)
-                .setUpgradedValue(6,400)
-                .setUpgradedValue(7,450)
-                .setUpgradedValue(8,500)
-                .setUpgradedValue(9,550)
-                .setUpgradedValue(10,650);
-        resilienceGain.setBaseValue(8.0F);
+        attackAnimTime.setBaseValue(450);
+        attackDamage.setBaseValue(135)
+                .setUpgradedValue(1,150)
+                .setUpgradedValue(2,175)
+                .setUpgradedValue(3,200)
+                .setUpgradedValue(4,225)
+                .setUpgradedValue(5,250)
+                .setUpgradedValue(6,275)
+                .setUpgradedValue(7,300)
+                .setUpgradedValue(8,325)
+                .setUpgradedValue(9,350)
+                .setUpgradedValue(10,400);
+        resilienceGain.setBaseValue(6.0F)
+                .setUpgradedValue(1, 7.0F)
+                .setUpgradedValue(5, 8.0F)
+                .setUpgradedValue(10, 10.0F);
         attackRange.setBaseValue(60);
-        knockback.setBaseValue(200);
+        knockback.setBaseValue(300);
         
     }
 

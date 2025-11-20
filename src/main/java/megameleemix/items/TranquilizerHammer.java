@@ -22,20 +22,28 @@ public class TranquilizerHammer extends SwordToolItem  {
         super(400, null);
         rarity = Item.Rarity.EPIC;
         attackAnimTime.setBaseValue(500);
-        attackDamage.setBaseValue(230)
-                .setUpgradedValue(1,260)
-                .setUpgradedValue(2,295)
-                .setUpgradedValue(3,345)
-                .setUpgradedValue(4,395)
-                .setUpgradedValue(5,445)
-                .setUpgradedValue(6,495)
-                .setUpgradedValue(7,545)
-                .setUpgradedValue(8,595)
-                .setUpgradedValue(9,645)
-                .setUpgradedValue(10,695);
+        attackDamage.setBaseValue(225)
+                .setUpgradedValue(1,250)
+                .setUpgradedValue(2,275)
+                .setUpgradedValue(3,300)
+                .setUpgradedValue(4,325)
+                .setUpgradedValue(5,350)
+                .setUpgradedValue(6,375)
+                .setUpgradedValue(7,400)
+                .setUpgradedValue(8,425)
+                .setUpgradedValue(9,450)
+                .setUpgradedValue(10,475);
         resilienceGain.setBaseValue(15.0F);
-        attackRange.setBaseValue(50);
-        knockback.setBaseValue(800);
+        attackRange.setBaseValue(50)
+                .setUpgradedValue(5, 75)
+                .setUpgradedValue(10, 100);
+        knockback.setBaseValue(800)
+                .setUpgradedValue(1,850)
+                .setUpgradedValue(3,900)
+                .setUpgradedValue(5,950)
+                .setUpgradedValue(7,1000)
+                .setUpgradedValue(9,1050)
+                .setUpgradedValue(10,1500);
         
     }
 

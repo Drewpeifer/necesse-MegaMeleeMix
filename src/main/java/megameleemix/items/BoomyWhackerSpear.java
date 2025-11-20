@@ -19,9 +19,19 @@ public class BoomyWhackerSpear extends SpearToolItem
 {
     public BoomyWhackerSpear() {
       super(1400, SpearWeaponsLootTable.spearWeapons);
-      this.rarity = Rarity.RARE;
+      this.rarity = Rarity.LEGENDARY;
       this.attackAnimTime.setBaseValue(400);
-      this.attackDamage.setBaseValue(40.0F).setUpgradedValue(1.0F, 50.0F);
+      this.attackDamage.setBaseValue(100)
+                .setUpgradedValue(1,125)
+                .setUpgradedValue(2,150)
+                .setUpgradedValue(3,175)
+                .setUpgradedValue(4,200)
+                .setUpgradedValue(5,225)
+                .setUpgradedValue(6,250)
+                .setUpgradedValue(7,275)
+                .setUpgradedValue(8,300)
+                .setUpgradedValue(9,325)
+                .setUpgradedValue(10,350);
       this.attackRange.setBaseValue(140);
       this.knockback.setBaseValue(50);
    }
@@ -38,16 +48,13 @@ public class BoomyWhackerSpear extends SpearToolItem
         {
             // damage target mob
             super.hitMob(item, event, level, target, attacker);
-            System.out.println("BoomyWhackerSpear hit something");
         }
 
    }
 
     public InventoryItem onAttack(Level level, int x, int y, ItemAttackerMob attackerMob, int attackHeight, InventoryItem item, ItemAttackSlot slot, int animAttack, int seed, GNDItemMap mapContent) {
          // create explosion at target location
-        System.out.println("BoomyWhackerSpear created BoomyExplosion at (" + x + ", " + y + ")");
-        System.out.println("Attacker coordinates: (" + attackerMob.getX() + ", " + attackerMob.getY() + ")");
-         level.entityManager.events.add(new BoomyExplosion((float)x, (float)y, 60, new necesse.entity.mobs.GameDamage(100.0F), true, true, 5.0F, attackerMob));
+         level.entityManager.events.add(new BoomyExplosion((float)x, (float)y, 60, new necesse.entity.mobs.GameDamage(this.getAttackDamageValue(item, attackerMob) * 2), true, true, 5.0F, attackerMob));
          return super.onAttack(level, x, y, attackerMob, attackHeight, item, slot, animAttack, seed, mapContent);
 
    }
