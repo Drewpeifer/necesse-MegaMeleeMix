@@ -8,7 +8,7 @@ plugins {
 project.ext.modID = "spookymulderfbi.megameleemix" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "Mega Melee Mix" // The display name of your mod.
 project.ext.modVersion = "1.0" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "1.0.3" // The target game version.
+project.ext.gameVersion = "1.1.1" // The target game version.
 project.ext.modDescription = "A collection of melee-focused additions for Necesse" // Short description of what your mod is.
 project.ext.author = "SpookyMulderFBI" // Your name
 
