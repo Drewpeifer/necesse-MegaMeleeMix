@@ -9,4 +9,5 @@ warlordspauldron=Warlord's Pauldron
 exsanguinatorswordtip=50% chance to heal for 30% of your armor on hit
 cauterizergreatswordtip=Sets the target ablaze for 10 seconds, burning for 50% of your current health each second
 tranquilizerhammertip=Paralyzes target for 3 seconds and delivers huge knockback
-boomywhackerspeartip=Creates an explosion on EVERY swing at cursor location, scaling with weapon damage \n**Don't use indoors!**
+boomywhackerspeartip=Creates an explosion on EVERY swing at cursor location, scaling with weapon damage\nDon't use indoors!
+warlordspauldrontip=+50% resilience gain\n+100 max resilience\n+100 max health\n+25% health regen\n+1 max food buffs\n-15% attack speed\n-15% crit chance

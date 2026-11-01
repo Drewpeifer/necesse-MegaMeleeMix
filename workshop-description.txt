@@ -37,6 +37,6 @@ The Boomy Whacker and Warlord's Pauldron can also turn up in loot.
 [list]
 [*]Updated for Necesse 1.3.3
 [*]Warlord's Pauldron: Resilience bonus fixed. It showed +5000% Resilience Regen; it is now +50% Resilience Gain as intended
-[*]Warlord's Pauldron: removed an empty "trinket ability" and the duplicate stat text from its tooltip
+[*]Warlord's Pauldron: removed an empty "trinket ability"; its tooltip now lists its actual stats
 [*]Tooltips and descriptions now match what the items actually do
 [/list]

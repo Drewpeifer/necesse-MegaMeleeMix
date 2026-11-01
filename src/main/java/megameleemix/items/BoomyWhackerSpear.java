@@ -37,7 +37,7 @@ public class BoomyWhackerSpear extends SpearToolItem
 
    public ListGameTooltips getPreEnchantmentTooltips(InventoryItem item, PlayerMob perspective, GameBlackboard blackboard) {
       ListGameTooltips tooltips = super.getPreEnchantmentTooltips(item, perspective, blackboard);
-      tooltips.add(Localization.translate("itemtooltip", "boomywhackerspeartip"));
+      tooltips.add(Localization.translate("itemtooltip", "boomywhackerspeartip"), 400);
       return tooltips;
    }
 
