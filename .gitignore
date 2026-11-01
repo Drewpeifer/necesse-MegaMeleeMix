@@ -35,3 +35,7 @@ build
 # Project specific
 steam_appid.txt
 latest-crash.log
+
+# macOS
+.DS_Store
+upload/

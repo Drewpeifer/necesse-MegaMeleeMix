@@ -14,10 +14,6 @@ public class BoomyExplosion extends ExplosionEvent
       this(0.0F, 0.0F, 40, new GameDamage(200.0F), true, true, 5.0F, (Mob)null);
     }
     
-    // public BoomyExplosion(float x, float y, int range, GameDamage damage, boolean destructive, float toolTier, Mob owner) {
-    //   super(x, y, range, damage, destructive, toolTier, owner);
-    // }
-    
     public BoomyExplosion(float x, float y, int range, GameDamage damage, boolean destroysObjects, boolean destroysTiles, float toolTier, Mob owner) {
       super(x, y, range, damage, destroysObjects, destroysTiles, toolTier, owner);
     }

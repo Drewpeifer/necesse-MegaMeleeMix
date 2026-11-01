@@ -2,14 +2,11 @@ plugins {
     id 'java'
 }
 
-// Change the values below this to your mods values
-// To change the project name, edit the settings.gradle file
-
 project.ext.modID = "spookymulderfbi.megameleemix" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "Mega Melee Mix" // The display name of your mod.
-project.ext.modVersion = "1.0" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "1.1.1" // The target game version.
-project.ext.modDescription = "A collection of melee-focused additions for Necesse" // Short description of what your mod is.
+project.ext.modVersion = "1.1" // Your current builds version. Must follow the xx.xx... format.
+project.ext.gameVersion = "1.3.3" // The target game version.
+project.ext.modDescription = "A collection of melee focused additions for Necesse" // Short description of what your mod is.
 project.ext.author = "SpookyMulderFBI" // Your name
 
 /**
@@ -19,29 +16,27 @@ project.ext.author = "SpookyMulderFBI" // Your name
  */
 project.ext.clientside = false
 
-/**
- * The other mod dependencies of this mod
- * Dependencies define the default load order of mods
- * Uncomment and configure these if your mod has dependencies
- */
 //project.ext.modDependencies = ["other.modid1", "other.modid2"]
 //project.ext.modOptionalDependencies = ["optional.modid1", "optional.modid2"]
 
-// The path to the games install directory
-def gameDirectory = "E:/games/steam/steamapps/common/Necesse"
+// The path to the game's install directory (macOS Steam layout: the jars live inside the .app bundle)
+def gameDirectory = System.getProperty("user.home") + "/Library/Application Support/Steam/steamapps/common/Necesse/Necesse.app/Contents/Resources"
+
+// Run the game with the Java runtime it ships with
+def gameJava = gameDirectory + "/jre/bin/java"
 
 // =================================================
 // ========== DO NOT EDIT BELOW THIS LINE ==========
 // =================================================
 
-// Name of the jar
 def jarName = "${project.ext.modName.replace(" ", "")}-${project.ext.gameVersion}-${project.ext.modVersion}"
 
 group project.ext.modID
 version project.ext.modVersion
 
-setSourceCompatibility(JavaVersion.VERSION_1_8)
-setTargetCompatibility(JavaVersion.VERSION_1_8)
+// Compiled for Java 16; the game runs mods on its bundled Java 17.
+setSourceCompatibility(JavaVersion.VERSION_16)
+setTargetCompatibility(JavaVersion.VERSION_16)
 
 repositories {
     mavenCentral()
@@ -53,13 +48,11 @@ configurations {
 
 sourceSets.main.output.resourcesDir = file("build/mod/resources/")
 sourceSets.main.java.outputDir = file("build/mod/")
-sourceSets.main.compileClasspath += configurations.libDepends // Adds libDepends configuration to classpath
+sourceSets.main.compileClasspath += configurations.libDepends
 def buildLocation = "build/jar/"
 
 compileJava.options.encoding = "UTF-8"
 
-// Fix for ByteBuffer compatibility issue when using newer JDKs
-// This ensures proper method signatures are generated
 tasks.withType(JavaCompile) {
     options.compilerArgs += ["-Xlint:-options"]
 }
@@ -71,12 +64,7 @@ if (!file(gameDirectory + "/Necesse.jar").exists()) {
 dependencies {
     implementation files(gameDirectory + "/Necesse.jar")
     implementation fileTree(gameDirectory + "/lib/")
-    implementation fileTree("./mods/") // Add all mods located in local mods folder
-
-    // Add any third party library dependencies here. Remember to use libDepends, so that they will be added to your jar on build
-    // These are some examples:
-//    libDepends group: 'com.google.guava', name: 'guava', version: '31.1-jre'
-//    libDepends files("path/to/library/jar.jar")
+    implementation fileTree("./mods/")
 }
 
 task createAppID {
@@ -88,26 +76,46 @@ task createAppID {
     }
 }
 
-task createModInfoFile(type: JavaExec) {
+// Writes mod.info directly. The game's CreateModInfoFile tool is not used because its argument
+// parser treats any "-" inside a value (such as a hyphenated word in a description) as the start of a new option.
+task createModInfoFile {
     group "necesse"
     description "Creates the mod info file"
 
-    classpath = files(gameDirectory + "/Necesse.jar")
+    def outFile = file("${sourceSets.main.java.outputDir}/mod.info")
+    inputs.property("modInfo", [project.ext.modID, project.ext.modName, project.ext.modVersion, project.ext.gameVersion,
+                                project.ext.modDescription, project.ext.author, project.ext.clientside].join("|"))
+    outputs.file(outFile)
 
-    main = "CreateModInfoFile"
-    args "-file", "${sourceSets.main.java.outputDir}/mod.info",
-            "-id", "${project.ext.modID}",
-            "-name", "${project.ext.modName}",
-            "-version", "${project.ext.modVersion}",
-            "-gameVersion", "${project.ext.gameVersion}",
-            "-description", "${project.ext.modDescription}",
-            "-author", "${project.ext.author}",
-            "-clientside", "${project.ext.clientside}",
-            "-dependencies", project.ext.has("modDependencies") ? "[" + project.ext.modDependencies.join(", ") + "]" : "",
-            "-optionalDependencies", project.ext.has("modOptionalDependencies") ? "[" + project.ext.modOptionalDependencies.join(", ") + "]" : ""
+    doLast {
+        def fields = [
+                id         : project.ext.modID,
+                name       : project.ext.modName,
+                version    : project.ext.modVersion,
+                gameVersion: project.ext.gameVersion,
+                description: project.ext.modDescription,
+                author     : project.ext.author,
+                clientside : project.ext.clientside.toString()
+        ]
+        fields.each { key, value ->
+            if (value ==~ /.*[,{}=\[\]\r\n\\].*/) {
+                throw new GradleException("mod.info value for '${key}' contains a character that needs escaping: ${value}")
+            }
+        }
+        def lines = fields.collect { key, value -> "\t${key} = ${value}" }
+        if (project.ext.has("modDependencies")) {
+            lines << "\tdependencies = [" + project.ext.modDependencies.join(", ") + "]"
+        }
+        if (project.ext.has("modOptionalDependencies")) {
+            lines << "\toptionalDependencies = [" + project.ext.modOptionalDependencies.join(", ") + "]"
+        }
+        outFile.parentFile.mkdirs()
+        outFile.text = "{\n" + lines.join(",\n") + "\n}"
+    }
 }
-// Makes compiling also create mod info file
 classes.dependsOn("createModInfoFile")
+
+def gameJvmArgs = ["-Xms512m", "-Xmx4G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"]
 
 task runClient(type: JavaExec) {
     group "necesse"
@@ -115,30 +123,26 @@ task runClient(type: JavaExec) {
     dependsOn "buildModJar", "createAppID"
 
     classpath = files(gameDirectory + "/Necesse.jar")
-
-    // Force use of Java 17 for running the game
-    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
-    executable = "${java17Home}/bin/java"
+    executable = gameJava
+    workingDir = gameDirectory
 
     main = "StartSteamClient"
-    jvmArgs "-Xms512m", "-Xmx4G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
-    args "-dev", "-mod \"${buildLocation}\""
+    jvmArgs gameJvmArgs
+    args "-dev", "-mod", file(buildLocation).absolutePath
 }
 
 task runDevClient(type: JavaExec) {
     group "necesse"
-    description "Run client with current mod"
+    description "Run a second client with current mod"
     dependsOn "buildModJar", "createAppID"
 
     classpath = files(gameDirectory + "/Necesse.jar")
-
-    // Force use of Java 17 for running the game
-    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
-    executable = "${java17Home}/bin/java"
+    executable = gameJava
+    workingDir = gameDirectory
 
     main = "StartSteamClient"
-    jvmArgs "-Xms512m", "-Xmx4G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
-    args "-dev 1", "-mod \"${buildLocation}\""
+    jvmArgs gameJvmArgs
+    args "-dev", "1", "-mod", file(buildLocation).absolutePath
 }
 
 task runServer(type: JavaExec) {
@@ -147,14 +151,12 @@ task runServer(type: JavaExec) {
     dependsOn "buildModJar"
 
     classpath = files(gameDirectory + "/Server.jar")
-
-    // Force use of Java 17 for running the game
-    def java17Home = "C:/Program Files/Eclipse Adoptium/jdk-17.0.17.10-hotspot"
-    executable = "${java17Home}/bin/java"
+    executable = gameJava
+    workingDir = gameDirectory
 
     main = "StartDesktopServer"
-    jvmArgs "-Xms512m", "-Xmx4G", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:G1NewSizePercent=20", "-XX:G1ReservePercent=20", "-XX:MaxGCPauseMillis=50", "-XX:G1HeapRegionSize=32M"
-    args "-mod \"${buildLocation}\""
+    jvmArgs gameJvmArgs
+    args "-mod", file(buildLocation).absolutePath
 }
 
 task buildModJar(type: Jar) {
@@ -168,9 +170,7 @@ task buildModJar(type: Jar) {
         }
     }
 
-    // Add mod output
     from sourceSets.main.java.outputDir
-    // Add the dependencies
     from configurations.libDepends.collect { it.isDirectory() ? it : zipTree(it) }
 
     archiveName "${jarName}.jar"

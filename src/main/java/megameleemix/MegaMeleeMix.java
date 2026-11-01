@@ -21,49 +21,31 @@ import necesse.inventory.recipe.Recipes;
 public class MegaMeleeMix {
 
     public void init() {
-
-        // // Register our items
+        // Items
         ItemRegistry.registerItem("exsanguinatorsword", new ExsanguinatorSword(), 20, true);
         ItemRegistry.registerItem("cauterizergreatsword", new CauterizerGreatsword(), 20, true);
         ItemRegistry.registerItem("tranquilizerhammer", new TranquilizerHammer(), 20, true);
         ItemRegistry.registerItem("boomywhackerspear", new BoomyWhackerSpear(), 20, true);
         ItemRegistry.registerItem("warlordspauldron", new WarlordsPauldron(), 400F, true);
 
-        // // Register our buff
+        // Buffs
         BuffRegistry.registerBuff("stun", new Stun());
         BuffRegistry.registerBuff("warlords_pauldron_buff", new WarlordsPauldronBuff());
 
-        // register event
+        // Level events
         LevelEventRegistry.registerEvent("boomy_explosion_event", BoomyExplosion.class);
-
     }
 
     public void initResources() {
-        // Sometimes your textures will have a black or other outline unintended under rotation or scaling
-        // This is caused by alpha blending between transparent pixels and the edge
-        // To fix this, run the preAntialiasTextures gradle task
-        // It will process your textures and save them again with a fixed alpha edge color
-
-        // ExampleMob.texture = GameTexture.fromFile("mobs/examplemob");
+        // Item and weapon textures load automatically from resources/items and resources/player/weapons
     }
 
     public void postInit() {
-        // Add recipes
-        // Example item recipe, crafted in inventory for 2 iron bars
-        // Recipes.registerModRecipe(new Recipe(
-        //         "exampleitem",
-        //         1,
-        //         RecipeTechRegistry.NONE,
-        //         new Ingredient[]{
-        //                 new Ingredient("ironbar", 2)
-        //         }
-        // ).showAfter("woodboat")); // Show recipe after wood boat recipe
         Recipes.registerModRecipe(new Recipe(
                 "exsanguinatorsword",
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        // new Ingredient("anylog", 1),
                         new Ingredient("tungstenbar", 15),
                 }
         ));
@@ -72,7 +54,6 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        // new Ingredient("anylog", 1),
                         new Ingredient("tungstenbar", 35),
                 }
         ));
@@ -81,7 +62,6 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        // new Ingredient("anylog", 1),
                         new Ingredient("myceliumbar", 25),
                 }
         ));
@@ -90,7 +70,6 @@ public class MegaMeleeMix {
                 1,
                 RecipeTechRegistry.IRON_ANVIL,
                 new Ingredient[]{
-                        // new Ingredient("anylog", 1),
                         new Ingredient("anylog", 20),
                         new Ingredient("copperbar", 20),
                         new Ingredient("ironbar", 20),
@@ -107,7 +86,6 @@ public class MegaMeleeMix {
                         new Ingredient("challengerspauldron", 5),
                 }
         ));
-
     }
 
 }

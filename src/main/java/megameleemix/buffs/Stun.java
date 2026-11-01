@@ -5,29 +5,18 @@ import necesse.entity.mobs.buffs.BuffEventSubscriber;
 import necesse.entity.mobs.buffs.BuffModifiers;
 import necesse.entity.mobs.buffs.staticBuffs.Buff;
 
+// Paralyzes the target. Applied by the Tranquilizer for 3 seconds.
 public class Stun extends Buff {
 
     public Stun() {
         canCancel = true;
         isVisible = true;
-        shouldSave = true;
+        shouldSave = false;
     }
-
 
     @Override
     public void init(ActiveBuff activeBuff, BuffEventSubscriber buffEventSubscriber) {
-        // Apply modifiers here
         activeBuff.setModifier(BuffModifiers.PARALYZED, true);
-    }
-
-    @Override
-    public void serverTick(ActiveBuff buff) {
-        // You can do server ticks here
-    }
-
-    @Override
-    public void clientTick(ActiveBuff buff) {
-        // You can do client ticks here, like adding particles to buff.owner
     }
 
 }

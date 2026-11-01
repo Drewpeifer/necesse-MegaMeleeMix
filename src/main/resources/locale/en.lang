@@ -6,8 +6,7 @@ boomywhackerspear=The Boomy Whacker
 warlordspauldron=Warlord's Pauldron
 
 [itemtooltip]
-exsanguinatorswordtip=50% change to generate 30% of total armor rating as health on hit
-cauterizergreatswordtip=Deals 50% of max health as fire damage per second over 10 seconds
+exsanguinatorswordtip=50% chance to heal for 30% of your armor on hit
+cauterizergreatswordtip=Sets the target ablaze for 10 seconds, burning for 50% of your current health each second
 tranquilizerhammertip=Paralyzes target for 3 seconds and delivers huge knockback
 boomywhackerspeartip=Creates an explosion on EVERY swing at cursor location, scaling with weapon damage \n**Don't use indoors!**
-warlordspauldrontip=50% Resilience Gain, \n+25% Combat Health Regen, \n100 Resilience and Max Health \n-15% Attack Speed and Crit Chance, \n+1 Active Food Buffs

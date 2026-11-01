@@ -53,7 +53,7 @@ public class CauterizerGreatsword extends SwordToolItem {
         if (target != null) {
             // damage target mob
             super.hitMob(item, event, level, target, attacker);
-            // burn target for 50% of total health, for 10 sec
+            // set target ablaze for 10 sec; fire damage per second is 50% of the attacker's current health, so tankier attackers burn harder
             float attackerHealth = attacker.getHealth();
             target.buffManager.addBuff(new ActiveBuff("ablaze", target, 10000, null), true, true).setModifier(BuffModifiers.FIRE_DAMAGE_FLAT, attackerHealth * 0.5F);
         }

@@ -1,0 +1,42 @@
+[h1]Mega Melee Mix[/h1]
+A little something for the melee crowd: four melee weapons and a tanky trinket. Updated for Necesse 1.3.3.
+
+[h2]Weapons[/h2]
+[list]
+[*][b]The Exsanguinator[/b] (sword): 50% chance to heal for 30% of your armor on hit
+[*][b]The Cauterizer[/b] (greatsword): sets the target ablaze for 10 seconds, burning for 50% of your current health each second. More health means more damage, so tanks hit hardest.
+[*][b]The Tranquilizer[/b] (hammer): paralyzes the target for 3 seconds and delivers huge knockback
+[*][b]The Boomy Whacker[/b] (spear): creates an explosion on EVERY swing at your cursor, scaling with weapon damage. Don't use indoors!
+[/list]
+
+[h2]Trinket[/h2]
+[b]Warlord's Pauldron[/b]
+[list]
+[*]+50% Resilience Gain
+[*]+100 Max Resilience
+[*]+100 Max Health
+[*]+25% Health Regen
+[*]+1 Max Food Buffs
+[*]-15% Attack Speed
+[*]-15% Crit Chance
+[/list]
+
+[h2]Recipes[/h2]
+All crafted at the Iron Anvil.
+[list]
+[*]The Exsanguinator: 15 Tungsten Bar
+[*]The Cauterizer: 35 Tungsten Bar
+[*]The Tranquilizer: 25 Mycelium Bar
+[*]The Boomy Whacker: 20 each of any log, Copper, Iron, Gold and Tungsten Bar, plus 1 Dynamite Stick
+[*]Warlord's Pauldron: 5 Challenger's Pauldron
+[/list]
+
+The Boomy Whacker and Warlord's Pauldron can also turn up in loot.
+
+[h2]Changes in 1.1[/h2]
+[list]
+[*]Updated for Necesse 1.3.3
+[*]Warlord's Pauldron: Resilience bonus fixed. It showed +5000% Resilience Regen; it is now +50% Resilience Gain as intended
+[*]Warlord's Pauldron: removed an empty "trinket ability" and the duplicate stat text from its tooltip
+[*]Tooltips and descriptions now match what the items actually do
+[/list]

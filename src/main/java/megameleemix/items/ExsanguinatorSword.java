@@ -3,7 +3,6 @@ package megameleemix.items;
 import necesse.engine.localization.Localization;
 import necesse.engine.util.GameBlackboard;
 import necesse.engine.util.GameRandom;
-import necesse.entity.levelEvent.LevelEvent;
 import necesse.entity.levelEvent.mobAbilityLevelEvent.MobHealthChangeEvent;
 import necesse.entity.levelEvent.mobAbilityLevelEvent.ToolItemMobAbilityEvent;
 import necesse.entity.mobs.Mob;
@@ -56,8 +55,8 @@ public class ExsanguinatorSword extends SwordToolItem {
             super.hitMob(item, event, level, target, attacker);
             // 50% chance to heal attacker for 30% of max armor on hit
             if (GameRandom.globalRandom.getChance(0.5F)) {
-                int AttackerHealthChange = (int)(attacker.getArmor() * 0.3F);
-                attacker.getLevel().entityManager.events.add((LevelEvent) new MobHealthChangeEvent(attacker, AttackerHealthChange));
+                int attackerHealthChange = (int)(attacker.getArmor() * 0.3F);
+                attacker.getLevel().entityManager.events.add(new MobHealthChangeEvent(attacker, attackerHealthChange));
             }
         }
    }
