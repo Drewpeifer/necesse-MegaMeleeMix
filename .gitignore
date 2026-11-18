@@ -39,3 +39,6 @@ latest-crash.log
 # macOS
 .DS_Store
 upload/
+
+# Local Mac test launcher (kept out of this repo)
+launch-for-upload.command
