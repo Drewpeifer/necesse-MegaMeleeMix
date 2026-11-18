@@ -42,3 +42,7 @@ upload/
 
 # Local Mac test launcher (kept out of this repo)
 launch-for-upload.command
+
+# Windows
+Thumbs.db
+desktop.ini

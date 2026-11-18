@@ -19,11 +19,16 @@ project.ext.clientside = false
 //project.ext.modDependencies = ["other.modid1", "other.modid2"]
 //project.ext.modOptionalDependencies = ["optional.modid1", "optional.modid2"]
 
-// The path to the game's install directory (macOS Steam layout: the jars live inside the .app bundle)
-def gameDirectory = System.getProperty("user.home") + "/Library/Application Support/Steam/steamapps/common/Necesse/Necesse.app/Contents/Resources"
+// The path to the game's install directory. Override with -PgameDir=... when building somewhere else.
+// Windows PC (current dev machine): Steam library on E:.
+// macOS (OBSOLETE, kept for reference): the jars live inside the .app bundle.
+def isWindows = System.getProperty("os.name").toLowerCase().contains("windows")
+def gameDirectory = project.hasProperty("gameDir") ? project.property("gameDir") :
+        (isWindows ? "E:/games/steam/steamapps/common/Necesse"
+                   : System.getProperty("user.home") + "/Library/Application Support/Steam/steamapps/common/Necesse/Necesse.app/Contents/Resources")
 
 // Run the game with the Java runtime it ships with
-def gameJava = gameDirectory + "/jre/bin/java"
+def gameJava = gameDirectory + (isWindows ? "/jre/bin/java.exe" : "/jre/bin/java")
 
 // =================================================
 // ========== DO NOT EDIT BELOW THIS LINE ==========

@@ -32,9 +32,11 @@ A mod for the game Necesse that adds a little something for the melee crowd. Bui
 
 ## Building
 
-Requires JDK 16 or 17 (the game's bundled Java can run the game but can't compile). `build.gradle` points at the default macOS Steam install.
+The old macOS build setup is obsolete and kept only for reference (macOS game path in `build.gradle`).
 
-    ./gradlew buildModJar     # -> build/jar/MegaMeleeMix-1.3.3-1.1.jar
-    ./gradlew runClient       # launches the game with the mod
+Requires JDK 17 (Gradle 7.3 can't run on newer JDKs; the game's bundled Java can run the game but can't compile). `build.gradle` points at the Windows PC's Steam install (`E:/games/steam/steamapps/common/Necesse`; the obsolete macOS path is still used on a Mac).
+
+    pwsh tools/build.ps1      # from the repo root; -> build/jar/MegaMeleeMix-1.3.3-1.1.jar, copied alone to upload/
+    .\gradlew.bat runClient   # launches the game with the mod
 
 The build writes `mod.info` itself instead of using the game's `CreateModInfoFile` tool, whose argument parser treats any `-` inside a value as a new option.
