@@ -4,6 +4,10 @@ rem Steam Workshop from the game's Mods menu. The upload\ folder must contain on
 rem (build it with tools\build.ps1). Windows PC version; launch-for-upload.command is the obsolete macOS one.
 setlocal
 if "%NECESSE_GAME%"=="" set "NECESSE_GAME=E:\games\steam\steamapps\common\Necesse"
+rem Tell the Steam API which game this is. Without it the game asks Steam to relaunch it, and Steam shows its
+rem launch-options popup instead of starting the dev build ("Could not load platform" in the log).
+set "SteamAppId=1169040"
+set "SteamGameId=1169040"
 set "MOD_DIR=%~dp0upload"
 if "%MOD_DIR:~-1%"=="\" set "MOD_DIR=%MOD_DIR:~0,-1%"
 
